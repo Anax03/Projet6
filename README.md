@@ -5,5 +5,5 @@ cd frontend
 Démarrer ng serve pour avoir accès au serveur de développement. Rendez-vous sur http://localhost:4200/
 
 cd backend
-
+npm install
 node nodeServeur
