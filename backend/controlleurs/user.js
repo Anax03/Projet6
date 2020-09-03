@@ -2,23 +2,34 @@
 const User = require('../models/user');
 const crypt = require('bcrypt');
 const jsntoken = require('jsonwebtoken');
+const { body, validationResult } = require('express-validator');
 
 /// Inscription
-exports.singup = (req, res, next) => {
-  crypt
-    .hash(req.body.password, 10)
-    .then((hash) => {
-      const user = new User({
-        email: req.body.email,
-        password: hash,
-      });
-      user
-        .save()
-        .then(() => res.status(201).json({ message: 'Utilisateur créer' }))
-        .catch((err) => res.status(400).json({ err }));
-    })
-    .catch((err) => res.status(500).json({ err }));
-};
+//// must be an valid email
+//// password must be at least 8 chars long
+exports.signup = [
+  body('email').isEmail(),
+  body('password').isLength({ min: 8 }),
+  (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+    crypt
+      .hash(req.body.password, 10)
+      .then((hash) => {
+        const user = new User({
+          email: req.body.email,
+          password: hash,
+        });
+        user
+          .save()
+          .then(() => res.status(201).json({ message: 'Utilisateur créer' }))
+          .catch((err) => res.status(400).json({ err }));
+      })
+      .catch((err) => res.status(500).json({ err }));
+  },
+];
 
 /// Login
 exports.login = (req, res, next) => {

@@ -4,6 +4,7 @@ const userValidator = require('mongoose-unique-validator');
 /// Shema User , email password
 const ShemaUser = mongo.Schema({
   email: { type: String, required: true, unique: true },
+
   password: { type: String, required: true },
 });
 

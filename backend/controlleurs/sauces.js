@@ -32,6 +32,7 @@ exports.updateSauce = (req, res, next) => {
         }`,
       }
     : { ...req.body };
+
   modelSauce
     .updateOne({ _id: req.params.id }, { ...objetSauce, _id: req.params.id })
     .then(() => res.status(200).json({ message: 'Objet modifié ! ' }))
