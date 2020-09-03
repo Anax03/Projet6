@@ -7,6 +7,25 @@ const helmet = require('helmet');
 const routerSauce = require('./routes/sauces');
 const routerUser = require('./routes/user');
 
+const Cookiesession = require('cookie-session');
+
+//cookies
+
+expiryDate = new Date(Date.now() + 60 * 60 * 1000); // 1 hour
+app.use(
+  Cookiesession({
+    name: 'session',
+    keys: ['key1', 'key2'],
+    cookie: {
+      secure: true,
+      httpOnly: true,
+      domain: 'example.com',
+      path: 'foo/bar',
+      expires: expiryDate,
+    },
+  })
+);
+
 /// accéder à notre API depuis n'importe quelle origine
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');

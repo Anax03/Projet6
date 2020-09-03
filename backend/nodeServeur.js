@@ -11,7 +11,7 @@ const PASSWORD = process.env.password;
 /// MongoDatabase
 mongo
   .connect(
-    `mongodb+srv://${ID}:${PASSWORD}@cluster0.akmte.mongodb.net/<dbname>?retryWrites=true&w=majority`,
+    `mongodb+srv://${ID}:${PASSWORD}@cluster0.akmte.mongodb.net/databaseProjet6?retryWrites=true&w=majority`,
     { useNewUrlParser: true, useUnifiedTopology: true }
   )
   .then(() => console.log('Connexion à MongoDB réussie !'))
