@@ -12,6 +12,6 @@ node nodeServeur
 Et aussi modifier le fichier .env dans le dossier backend 
 ajouter  :
 port=
-(Database User+password)
 id=
 password=
+(Database User+password)
