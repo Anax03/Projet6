@@ -7,3 +7,10 @@ Démarrer ng serve pour avoir accès au serveur de développement. Rendez-vous s
 cd backend
 npm install
 node nodeServeur
+
+
+Et aussi modifier le fichier .env dans le dossier backend 
+ajouter  
+port=
+id=
+password=
